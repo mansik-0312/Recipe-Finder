@@ -18,5 +18,25 @@ document.addEventListener("DOMContentLoaded", function () {
             recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(query))
         );
         displayRecipes(filteredRecipes);
-    })
+    });
+
+    function displayRecipes(recipes) {
+        resultsContainer.innerHTML = "";
+        if (recipes.length === 0) {
+            resultsContainer.innerHTML = "<p>No recipes found</p>";
+            return;
+        }
+        recipes.forEach((recipe) => {
+            const recipeCard = document.createElement('div');
+            recipeCard.classList.add('recipe-card');
+            recipeCard.innerHTML = `
+            <h3>${recipe.name}</h3>
+            <p><strong>Difficult:</strong> ${recipe.difficulty}</p>
+            <p><strong>Time:</strong> ${recipe.prepTimeMinutes + recipe.cookTimeMinutes} min</p>
+            <p><strong>Ingredients:</strong>${recipe.ingredients.join(",")}</p>
+            <p><strong>Instructions:</strong> ${recipe.instructions.join("<br>")}</p>
+            `;
+            resultsContainer.appendChild(recipeCard);
+        });
+    }
 });
