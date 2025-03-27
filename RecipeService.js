@@ -12,4 +12,10 @@ export default class RecipeService {
             console.log("Error loading recipes: ", error);
         }
     }
+
+    searchRecipes (ingredient) {
+        return this.recipes.filter(recipe =>
+            recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))
+        );
+    }
 }
