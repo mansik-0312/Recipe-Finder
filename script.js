@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error loading recipes:", error));
 
-    searchButton.addEventListener("click", function () {
-        const query = ingredientsInput.value.toLowerCase();
-        const filteredRecipes = window.recipes.filter(recipe =>
-            recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(query))
+    function searchRecipes (recipes) {
+        const input = document.getElementById('ingredients').value.toLowerCase();
+        const results = recipes.filter((recipes) => 
+        recipes.ingredients.some(ingredients => ingredients.toLowerCase().includes(input))
         );
-        displayRecipes(filteredRecipes);
-    });
+        displayRecipes(results);
+    }
 
     function displayRecipes(recipes) {
         resultsContainer.innerHTML = "";
