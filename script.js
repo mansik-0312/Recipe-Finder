@@ -1,14 +1,8 @@
-// Fetch recipes from local JSON file and log data to console
-// document.addEventListener("DOMContentLoaded", function () {
-//     const searchButton = document.getElementById("searchButton");
-//     const ingredientsInput = document.getElementById("ingredients");
-//     const resultsContainer = document.getElementById("results");
-// function fetchRecipes(callback) {
 function fetchRecipes(callback){
         fetch("recipes.json")
         .then(response => response.json())
         .then(data => {
-            console.log("recipe loded", data);
+            console.log("recipe loaded", data);
             callback(data);
         })
         .catch(error => console.error("Error loading recipes:", error));
@@ -20,52 +14,40 @@ function searchRecipes (recipes) {
     const results = recipes.filter((recipes) => 
     recipes.ingredients.some(ingredients => ingredients.toLowerCase().includes(input))
     );
-    displayRecipes(results);
+    displayResults(results);
 }
 
 // Display recipe result
-function displayResult(results) {
+function displayResults(results) {
     const container = document.getElementById('results');
     container.innerHTML = '';
 
-    if (recipes.length === 0) {
+    if (results.length === 0) {
         container.innerHTML = "<p>No recipes found</p>";
         return;
     }
 
-    results.forEach((recipes) => {
-        const card = document.getElementById('div');
+    results.forEach((recipe) => {
+        const card = document.createElement('div');
         card.classList.add('recipe-card');
         card.innerHTML = `
-        <div class="recipe-card" onclick="viewRecipeDetails(${recipes.id})">
-        <img src="${recipes.image}" alt="${recipes.name}">
-        <h3>${recipes.name}</h3>
-        <p><strong>Click to view the details</p>
+        <div class="recipe-card">
+        <img src="${recipe.image}" alt="${recipe.name}" style="width: 100px; height: auto; border-radius: 5px;">
+        <h3>${recipe.name}</h3>
+        <p>Ingredients: ${recipe.ingredients.join(", ")}</p>
+        <p><strong class="view-details" data-id="${recipe.id}" style="text-decoration: underline; cursor: pointer;">Click to view details</strong></p>
+        <p class="recipe-instructions" id="instructions-${recipe.id}" style="display: none;"><strong>Instructions:</strong> ${recipe.instructions}</p>
         </div>
         `;
         container.appendChild(card);
     });
-}
 
-// View detailed recipe instructions
-function viewRecipeDetails(recipeId) {
-    fetch("recipe.json")
-    .then(response => response.json())
-    .then(recipes => {
-        const recipe = recipes.find(r => r.id === recipeId);
-        if (recipe) {
-            const detailContainer = document.getElementById("recipeDetail");
-            detailContainer.innerHTML = `
-            <div class="recipe-detail">
-                <h2>${recipe.name}</h2>
-                <img src="${recipe.image}" alt="${recipe.name}">
-                <p><strong>Ingredient:</strong> ${recipe.ingredients.join(",")}</p>
-                <p><strong>Instruction:</strong>${recipe.instructions}</p>
-                <button onclick="closeRecipeDetails()">Close</button>
-            </div>
-            `;
-            detailContainer.style.display = 'block';
-        }
+    document.querySelectorAll(".view-details").forEach(button => {
+        button.addEventListener("click", function() {
+            const recipeId = this.getAttribute("data-id");
+            const instructions = document.getElementById(`instructions-${recipeId}`);
+            instructions.style.display = instructions.style.display === "none" ? "block" : "none";
+        });
     });
 }
 
