@@ -1,53 +1,40 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
     text-align: center;
-    padding: 20px;
     margin: 0;
+    padding: 0;
 }
 
 .container {
     max-width: 600px;
-    margin: auto;
-    background: white;
+    margin: 20px auto;
+    background: #fff;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    transition: all 0.3s ease-in-out;
 }
 
 h1 {
     color: #333;
-    font-size: 26px;
-    margin-bottom: 20px;
 }
 
 input {
-    width: calc(100% - 22px);
-    padding: 12px;
+    width: 80%;
+    padding: 10px;
     margin: 10px 0;
-    margin-bottom: 10px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-input:focus {
-    border-color: #28a745;
-    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
-    padding: 12px 20px;
+    padding: 10px 20px;
     border: none;
-    background: linear-gradient(135deg, #28a745, #218838);
+    background-color: #28a745;
     color: white;
-    font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
 button:hover {
@@ -58,33 +45,38 @@ button:hover {
     margin-top: 20px;
 }
 
-.recipe-container div {
-    background: white;
+.recipe-card {
+    background: #fff;
     padding: 15px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
-.recipe-container div:hover {
-    transform: translateY(-5px);
-}
-
-.recipe-container img {
-    width: 100%;
+.recipe-card img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 120px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.recipe-container h3 {
+.view-details {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.view-details:hover {
+    color: #0056b3;
+}
+
+.recipe-instructions {
+    display: none;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
     margin-top: 10px;
-    font-size: 20px;
-    color: #333;
-}
-
-.recipe-container p {
-    font-size: 14px;
-    color: #555;
 }
