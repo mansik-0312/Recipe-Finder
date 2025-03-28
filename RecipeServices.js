@@ -1,4 +1,4 @@
-export default class RecipeService {
+export default class RecipeServices {
     constructor () {
         this.recipes = [];
     }
@@ -17,5 +17,6 @@ export default class RecipeService {
         return this.recipes.filter(recipe =>
             recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))
         );
+
     }
 }

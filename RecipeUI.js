@@ -1,10 +1,11 @@
 export default class RecipeUI {
-    constructor () {
-        this.container = document.getElementById('result');
+    constructor() {
+        this.container = document.getElementById('results');
     }
 
     displayResults(recipes) {
         this.container.innerHTML = '';
+        document.querySelector('')
 
         if (recipes.length === 0) {
             this.container.innerHTML = "<p>No recipes found</p>";
