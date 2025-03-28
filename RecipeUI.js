@@ -5,7 +5,7 @@ export default class RecipeUI {
 
     displayResults(recipes) {
         this.container.innerHTML = '';
-        document.querySelector('')
+        document.querySelector('results')
 
         if (recipes.length === 0) {
             this.container.innerHTML = "<p>No recipes found</p>";
